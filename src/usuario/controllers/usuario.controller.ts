@@ -1,4 +1,4 @@
-import { Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { UsuarioService } from '../services/usuario.service';
 import { Usuario } from '../entities/usuario.entity';
 
@@ -8,7 +8,7 @@ export class UsuarioController {
 
   @Post('/cadastrar')
   @HttpCode(HttpStatus.CREATED)
-  create(usuario: Usuario): Promise<Usuario> {
+  create(@Body() usuario: Usuario): Promise<Usuario | null> {
     return this.usuarioService.create(usuario);
   }
 }
